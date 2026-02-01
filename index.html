@@ -1,74 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For Tara ❤️</title>
-  <style>
-    body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
+<title>For Tara ❤️</title>
+<style>
+  body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #ff4d6d, #ff758f, #845ec2, #ff4d6d);
+    background-size: 400% 400%;
+    animation: bgMove 12s ease infinite;
+    font-family: Arial, sans-serif;
+  }
 
-    .box {
-      text-align: center;
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
+  @keyframes bgMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
 
-    h1 {
-      font-size: 24px;
-    }
+  .card {
+    background: rgba(0,0,0,0.75);
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(0,0,0,0.6);
+    animation: popIn 1.5s ease;
+    z-index: 2;
+  }
 
-    button {
-      padding: 12px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin: 10px;
-    }
+  @keyframes popIn {
+    from {opacity:0; transform: scale(0.9);}
+    to {opacity:1; transform: scale(1);}
+  }
 
-    #yes {
-      background-color: #ff4d6d;
-      color: white;
-    }
+  h1 {
+    animation: pulse 2s infinite;
+  }
 
-    #no {
-      background-color: #ccc;
-      position: absolute;
-    }
-  </style>
+  @keyframes pulse {
+    0%,100% {transform: scale(1);}
+    50% {transform: scale(1.05);}
+  }
+
+  button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  #yes {
+    background: #ff4d6d;
+    color: white;
+  }
+
+  #no {
+    position: absolute;
+    background: #333;
+    color: white;
+  }
+
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    from {transform: translateY(100vh) scale(0.5);}
+    to {transform: translateY(-10vh) scale(1.2);}
+  }
+</style>
 </head>
+
 <body>
 
-  <div class="box">
-    <h1>💖 Will you be my Valentine, Tara? 💐</h1>
-    <p>👉❤️👈</p>
-    <button id="yes" onclick="yesClick()">YES</button>
-    <button id="no">NO</button>
-  </div>
+<div class="card">
+  <h1>Tara 🌹</h1>
+  <p>Will you be my Valentine?</p>
+  <button id="yes">Yes ❤️</button>
+  <button id="no">No 😏</button>
+</div>
 
-  <script>
-    const noBtn = document.getElementById("no");
+<script>
+  // Moving NO button
+  const no = document.getElementById("no");
+  no.addEventListener("mouseover", () => {
+    no.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    no.style.top = Math.random() * (window.innerHeight - 50) + "px";
+  });
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 50);
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    });
+  // YES explosion
+  document.getElementById("yes").onclick = () => {
+    document.body.innerHTML =
+      "<h1 style='color:white;animation:pulse 1.5s infinite;'>You’re my Valentine ❤️</h1>";
+  };
 
-    function yesClick() {
-      document.body.innerHTML = "<h1 style='color:white;'>🥰 I knew it! Happy Valentine’s Day 💕</h1>";
-    }
-  </script>
+  // Floating hearts
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 10000);
+  }
+
+  setInterval(createHeart, 400);
+</script>
 
 </body>
 </html>
