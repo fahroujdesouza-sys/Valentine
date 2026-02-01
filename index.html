@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Tara ❤️</title>
+  <style>
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+    .card {
+      text-align: center;
+      background: #1c1c1c;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255,0,0,0.4);
+    }
+    h1 {
+      color: #ff4d6d;
+    }
+    .buttons {
+      margin-top: 25px;
+      position: relative;
+      height: 80px;
+    }
+    button {
+      padding: 12px 22px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+    #no {
+      position: absolute;
+      background: #555;
+      color: white;
+      left: 120px;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>💖 Tara 💖</h1>
+  <p>Will you be my Valentine? 🌹</p>
+  <div class="buttons">
+    <button id="yes" onclick="yesClicked()">YES ❤️</button>
+    <button id="no" onmouseover="moveNo()">NO 😜</button>
+  </div>
+</div>
+
+<script>
+  function moveNo() {
+    const noBtn = document.getElementById("no");
+    const x = Math.random() * 200;
+    const y = Math.random() * 50;
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+
+  function yesClicked() {
+    alert("💘 She said YES! 💘");
+  }
+</script>
+
+</body>
+</html>
